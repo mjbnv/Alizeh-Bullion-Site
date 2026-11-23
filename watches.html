@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luxury Watches: Rolex Daytona, GMT-Master II, Submariner | Alizeh Bullion</title>
+  <meta name="description" content="Rolex Daytona Panda, GMT-Master II Pepsi and Batman, Submariner Hulk and Kermit, Day-Date and Datejust. Authenticated luxury watches bought and sold by Alizeh Bullion.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath fill='%23C6A15B' d='M4 88 44 2h14l16 38-14 12-9-22-30 58zM64 58l14-12 18 42H80z'/%3E%3C/svg%3E">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/tw.js"></script>
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .floaty { animation: floaty 7s ease-in-out infinite; }
+    .floaty.b { animation-delay: -2.3s; } .floaty.c { animation-delay: -4.6s; }
+    @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  </style>
+</head>
+<body data-page="watches" class="antialiased">
+  <div data-header></div>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="surface-marble grain overflow-hidden">
+      <div class="max-w-site mx-auto px-5 md:px-8 pt-16 pb-16 md:pt-24 md:pb-24 grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6" data-stagger="120">
+          <p class="label">Luxury watches</p>
+          <h1 class="h-display text-[clamp(2.4rem,5vw,4.2rem)] mt-5">Rolex icons, authenticated.</h1>
+          <p class="lede mt-5">From the Daytona "Panda" to the GMT-Master II "Pepsi", we buy, sell and trade the world's most recognised watches, with <span data-total-count>hundreds of</span> Rolex references in our catalogue. Every piece is verified for authenticity, movement and condition.</p>
+          <div class="flex flex-wrap gap-3 mt-9">
+            <a class="btn btn-gold" href="#all-rolex">Browse all Rolex</a>
+            <a class="btn btn-outline" href="#sell">Sell your watch</a>
+          </div>
+        </div>
+        <div class="lg:col-span-6 relative h-[340px] sm:h-[420px]" data-reveal="right" aria-hidden="true">
+          <div class="absolute left-[2%] top-[14%] w-[34%] aspect-[4/5] floaty watch-art" data-hero="Pepsi"></div>
+          <div class="absolute left-[33%] top-0 w-[38%] aspect-[4/5] floaty b watch-art z-10" data-hero="Panda"></div>
+          <div class="absolute right-[0%] top-[16%] w-[34%] aspect-[4/5] floaty c watch-art" data-hero="Hulk"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticky family tabs -->
+    <nav id="collection" class="sticky z-40 bg-[#F8F7F3]/[.97] backdrop-blur-md border-y border-gold/25" style="top:5rem" aria-label="Watch collections" data-tabbar>
+      <div class="max-w-site mx-auto px-5 md:px-8 flex items-center justify-between gap-6">
+        <div class="tabbar flex gap-7 overflow-x-auto no-scrollbar" data-tabs></div>
+        <div class="hidden md:flex items-center gap-3 shrink-0"><span class="text-[0.68rem] font-semibold tracking-[0.14em] uppercase text-ink-faint">Prices in</span><span data-currency-switch-slot></span></div>
+      </div>
+    </nav>
+
+    <div data-families></div>
+
+    <!-- Full Rolex collection -->
+    <section id="all-rolex" class="surface-ivory py-20 md:py-24" data-family>
+      <div class="max-w-site mx-auto px-5 md:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6" data-reveal>
+          <div>
+            <p class="label">Full collection</p>
+            <h2 class="sec-title mt-5">Every Rolex in our catalogue.</h2>
+            <p class="text-ink-soft mt-4 max-w-2xl">Search by model, nickname or reference number. Availability and pricing are confirmed on enquiry.</p>
+          </div>
+          <p class="text-sm text-ink-faint" data-cat-count aria-live="polite"></p>
+        </div>
+
+        <div class="panel p-4 md:p-5 mt-10 flex flex-col gap-4" data-reveal>
+          <div class="grid md:grid-cols-12 gap-3">
+            <label class="md:col-span-8 relative block">
+              <span class="sr-only">Search the Rolex collection</span>
+              <svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gold-deep pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <input type="search" class="field !pl-12" placeholder="Search e.g. Daytona, 126710, Sprite, white gold, 41mm" data-cat-q autocomplete="off">
+            </label>
+            <label class="md:col-span-4 flex items-center gap-3">
+              <span class="text-[0.68rem] font-semibold tracking-[0.14em] uppercase text-ink-faint shrink-0">Sort</span>
+              <select class="field" data-cat-sort>
+                <option value="featured">Featured</option>
+                <option value="model">Model (A–Z)</option>
+                <option value="ref">Reference number</option>
+                <option value="size">Case size</option>
+              </select>
+            </label>
+          </div>
+          <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" role="group" aria-label="Filter by model" data-cat-models></div>
+        </div>
+
+        <ul class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" data-cat-grid></ul>
+        <div class="hidden text-center py-16" data-cat-empty>
+          <p class="text-ink-soft">No watches match your search.</p>
+          <div class="flex flex-wrap justify-center gap-3 mt-5">
+            <button type="button" class="btn btn-outline btn-sm" data-cat-reset>Clear filters</button>
+            <a class="btn btn-wa btn-sm" data-wa-to="watches" data-wa="Hello Alizeh Bullion, I am looking for a specific Rolex that I could not find on your website." href="#"><span data-wa-icon></span>Ask us to source it</a>
+          </div>
+        </div>
+        <div class="mt-10 flex flex-col items-center gap-3">
+          <p class="text-sm text-ink-faint" data-cat-showing></p>
+          <button type="button" class="btn btn-outline" data-cat-more>Show more watches</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sell -->
+    <section id="sell" class="surface-champagne grain py-20 md:py-28">
+      <div class="max-w-site mx-auto px-5 md:px-8 grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-5" data-reveal="left">
+          <p class="label">Sell or trade</p>
+          <h2 class="sec-title mt-5">We buy luxury watches.</h2>
+          <p class="text-ink-soft mt-5 max-w-md">Sell outright, or trade against another watch or gold. Send photos for an indicative valuation before visiting the showroom.</p>
+          <a class="btn btn-wa mt-8" data-wa-to="watches" data-wa="Hello Alizeh Bullion, I would like to sell a watch. Here are some photos:" href="#"><span data-wa-icon></span>Send photos on WhatsApp</a>
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7">
+          <h3 class="text-[0.7rem] font-semibold tracking-[0.16em] uppercase text-ink-faint">Please include</h3>
+          <ul class="mt-6 grid sm:grid-cols-2 gap-4" data-stagger="90">
+            <li class="panel p-5"><p class="font-semibold">Clear photographs</p><p class="text-sm text-ink-soft mt-1">Dial, case back, clasp and bracelet.</p></li>
+            <li class="panel p-5"><p class="font-semibold">Box and papers</p><p class="text-sm text-ink-soft mt-1">Warranty card and purchase receipt, if available.</p></li>
+            <li class="panel p-5"><p class="font-semibold">Service history</p><p class="text-sm text-ink-soft mt-1">Year of purchase and any service records.</p></li>
+            <li class="panel p-5"><p class="font-semibold">Condition notes</p><p class="text-sm text-ink-soft mt-1">Marks, scratches or missing links.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Authentication -->
+    <section class="surface-marble soft grain py-20 md:py-28">
+      <div class="max-w-site mx-auto px-5 md:px-8">
+        <div class="text-center max-w-2xl mx-auto" data-reveal>
+          <p class="label center">Our process</p>
+          <h2 class="sec-title mt-5">How every watch is verified.</h2>
+        </div>
+        <ol class="mt-14 grid md:grid-cols-3 gap-5" data-stagger="120">
+          <li class="panel lift p-8"><span class="h-display text-3xl text-gold-deep num">01</span><h3 class="h-card text-lg mt-4">Authenticity</h3><p class="text-sm text-ink-soft mt-2">Serial and reference numbers verified; movement inspected under magnification.</p></li>
+          <li class="panel lift p-8"><span class="h-display text-3xl text-gold-deep num">02</span><h3 class="h-card text-lg mt-4">Timekeeping</h3><p class="text-sm text-ink-soft mt-2">Rate, amplitude and power reserve measured on a timegrapher.</p></li>
+          <li class="panel lift p-8"><span class="h-display text-3xl text-gold-deep num">03</span><h3 class="h-card text-lg mt-4">Condition grading</h3><p class="text-sm text-ink-soft mt-2">Case, crystal and bracelet graded and recorded on your receipt.</p></li>
+        </ol>
+        <p class="text-xs text-ink-faint text-center mt-12 max-w-3xl mx-auto">Rolex, Daytona, GMT-Master II, Submariner, Day-Date and Datejust are trademarks of Rolex SA. Alizeh Bullion is an independent dealer and is not affiliated with or endorsed by Rolex SA. Nicknames are collector terms. Product images are representative; where no photograph is available, an illustration is shown. Photographs of actual stock are available on request.</p>
+      </div>
+    </section>
+  </main>
+
+  <div data-footer></div>
+
+  <script src="assets/watches-data.js"></script>
+  <script src="assets/watch-art.js"></script>
+  <script src="assets/watch-images.js"></script>
+  <script src="assets/watch-catalogue.js"></script>
+  <script src="assets/site.js"></script>
+  <script>
+    (() => {
+      const { waWatchLink, waIcon, fmt, toCur, switcher, wire, reveal } = AB;
+      const FAM = window.AB_WATCH_FAMILIES, W = window.AB_WATCHES;
+      const find = (n) => W.find((w) => w.nickname === n);
+      const PHOTOS = window.AB_WATCH_IMAGES || {};
+      const photoOf = (w) => w.image || PHOTOS[`${w.family}:${w.nickname}`]?.src || null;
+      const visual = (w, eager) => photoOf(w)
+        ? `<img src="${photoOf(w)}" alt="Rolex ${w.model} ${w.nickname}, reference ${w.ref}" class="watch-photo w-full h-full object-contain" ${eager ? '' : 'loading="lazy"'} decoding="async">`
+        : watchSVG(w);
+      document.querySelectorAll('[data-hero]').forEach((el) => (el.innerHTML = visual(find(el.dataset.hero), true)));
+      document.querySelector('[data-currency-switch-slot]').outerHTML = switcher('Watch price currency');
+
+      // Tabs
+      document.querySelector('[data-tabs]').innerHTML = FAM.map((f, i) => `<a href="#${f.id}" aria-current="${i === 0}">${f.short}</a>`).join('') + (window.AB_CATALOGUE?.length ? `<a href="#all-rolex" aria-current="false">All Rolex (${window.AB_CATALOGUE.filter((c) => /rolex/i.test(c.brand)).length})</a>` : '');
+
+      // Families
+      let marketValues = {};
+      const priceTextRef = (ref) => { const v = marketValues[ref]; return v && v.avg ? fmt(toCur(v.avg)) : 'Price on request'; };
+      const priceText = (w) => priceTextRef(w.ref);
+      document.querySelector('[data-families]').innerHTML = FAM.map((f, fi) => {
+        const items = W.filter((w) => w.family === f.id);
+        return `
+        <section id="${f.id}" class="${fi % 2 ? 'surface-ivory' : 'surface-marble soft grain'} py-20 md:py-24" data-family>
+          <div class="max-w-site mx-auto px-5 md:px-8 grid lg:grid-cols-12 gap-10 lg:gap-12">
+            <div class="lg:col-span-4">
+              <div class="lg:sticky lg:top-44" data-reveal="left">
+                <p class="label">${f.name}</p>
+                <h2 class="sec-title mt-5">${f.short}</h2>
+                <p class="text-ink-soft mt-5">${f.intro}</p>
+                <p class="text-sm text-ink-faint mt-4"><span class="font-semibold text-ink">${items.length}</span> colourways listed</p>
+                <figure class="mt-8">
+                  <div class="panel-float p-2"><div class="img-treat rounded-[10px] aspect-[4/3]"><img src="${f.photo}" alt="${f.photoAlt}" loading="lazy"></div></div>
+                  <figcaption class="text-[0.68rem] text-ink-faint mt-2">Photo: <a class="underline decoration-gold/50 hover:text-ink" href="${f.credit.url}" target="_blank" rel="noopener">${f.credit.author}</a>, ${f.credit.license}, via Wikimedia Commons</figcaption>
+                </figure>
+              </div>
+            </div>
+            <ul class="lg:col-span-8 grid sm:grid-cols-2 gap-5" data-stagger="80">
+              ${items.map((w) => `
+              <li class="group panel lift overflow-hidden flex flex-col">
+                <div class="relative surface-champagne h-64 grid place-items-center overflow-hidden">
+                  <div class="absolute inset-0 pattern-mark opacity-60"></div>
+                  <div class="relative ${photoOf(w) ? 'w-[172px] h-[215px] translate-y-3' : 'w-[170px] h-[212px]'} watch-art">${visual(w)}</div>
+                  <span class="absolute left-4 top-4 rounded-md bg-ivory/90 border border-gold/30 px-2.5 py-1 text-[0.68rem] font-semibold tracking-[0.08em] uppercase text-ink-soft num">Ref. ${w.ref}</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                  <p class="text-[0.68rem] font-semibold tracking-[0.16em] uppercase text-gold-deep">${w.model}</p>
+                  <h3 class="h-card text-[1.4rem] mt-1.5">“${w.nickname}”</h3>
+                  <dl class="mt-4 grid grid-cols-[5.5rem_1fr] gap-y-1.5 text-sm">
+                    <dt class="text-ink-faint">Dial</dt><dd class="text-ink-soft">${w.dial}</dd>
+                    <dt class="text-ink-faint">Bezel</dt><dd class="text-ink-soft">${w.bezel}</dd>
+                    <dt class="text-ink-faint">Case</dt><dd class="text-ink-soft">${w.metal}</dd>
+                  </dl>
+                  <div class="mt-auto pt-5 border-t border-gold/20 flex items-end justify-between gap-4" style="margin-top:auto">
+                    <div class="pt-5"><p class="text-[0.66rem] font-semibold tracking-[0.14em] uppercase text-ink-faint">Market value</p><p class="font-semibold text-ink num mt-0.5" data-price="${w.ref}">${priceText(w)}</p></div>
+                    <a class="btn btn-outline btn-sm" href="${waWatchLink(`Hello Alizeh Bullion, I am interested in the Rolex ${w.model} "${w.nickname}" (ref. ${w.ref}). Is it available, and what is the price?`)}" target="_blank" rel="noopener" aria-label="Enquire about the ${w.nickname} on WhatsApp">${waIcon('w-4 h-4')}Enquire</a>
+                  </div>
+                </div>
+              </li>`).join('')}
+            </ul>
+          </div>
+        </section>`;
+      }).join('');
+      wire();
+
+      // Sticky tab offset follows the (shrinking) header
+      const tabbar = document.querySelector('[data-tabbar]');
+      const hdr = () => document.querySelector('.site-header');
+      const syncTop = () => { const h = hdr(); if (h) tabbar.style.top = h.getBoundingClientRect().height + 'px'; };
+      window.addEventListener('scroll', syncTop, { passive: true }); window.addEventListener('resize', syncTop);
+      setTimeout(syncTop, 50);
+
+      // Active tab while scrolling
+      const tabs = [...document.querySelectorAll('[data-tabs] a')];
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          tabs.forEach((t) => {
+            const on = t.getAttribute('href') === '#' + e.target.id;
+            t.setAttribute('aria-current', String(on));
+            if (on) { const box = t.parentElement; box.scrollTo({ left: t.offsetLeft - box.clientWidth / 2 + t.offsetWidth / 2, behavior: 'smooth' }); }
+          });
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      document.querySelectorAll('[data-family]').forEach((s) => spy.observe(s));
+
+      // ── Full collection ──
+      const CAT = (window.AB_CATALOGUE || []).filter((c) => /rolex/i.test(c.brand));
+      const catSection = document.getElementById('all-rolex');
+      if (!CAT.length) catSection.remove();
+      else {
+        document.querySelector('[data-total-count]').textContent = `over ${Math.floor(CAT.length / 10) * 10}`;
+        const PAGE = 24;
+        let shown = PAGE, model = 'all', q = '', sort = 'featured';
+        const ORDER = ['Cosmograph Daytona', 'GMT-Master II', 'Submariner', 'Day-Date', 'Datejust', 'Sky-Dweller', 'Yacht-Master', 'Sea-Dweller', 'Land-Dweller', 'Explorer', 'Oyster Perpetual', 'Lady-Datejust', '1908', 'Air-King', 'Milgauss', 'Pearlmaster', 'Cellini'];
+        const rank = (m) => { const i = ORDER.indexOf(m); return i < 0 ? 99 : i; };
+        const grid = document.querySelector('[data-cat-grid]');
+        const models = Object.entries(CAT.reduce((a, c) => ((a[c.model] = (a[c.model] || 0) + 1), a), {})).sort((a, b) => b[1] - a[1]);
+        const chipsEl = document.querySelector('[data-cat-models]');
+        chipsEl.innerHTML = `<button type="button" class="chip whitespace-nowrap" data-m="all" aria-pressed="true">All models <span class="text-ink-faint">${CAT.length}</span></button>` +
+          models.map(([m, n]) => `<button type="button" class="chip whitespace-nowrap" data-m="${m}" aria-pressed="false">${m} <span class="text-ink-faint">${n}</span></button>`).join('');
+        const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const card = (c) => `
+          <li class="group panel lift overflow-hidden flex flex-col">
+            <div class="relative surface-champagne h-60 grid place-items-center overflow-hidden">
+              <div class="absolute inset-0 pattern-mark opacity-50"></div>
+              <img src="${c.file}" alt="Rolex ${esc(c.name)}" loading="lazy" decoding="async" class="watch-photo relative w-[150px] h-[188px] object-contain translate-y-2">
+              ${c.ref ? `<span class="absolute left-3 top-3 rounded-md bg-ivory/90 border border-gold/30 px-2 py-0.5 text-[0.64rem] font-semibold tracking-[0.06em] uppercase text-ink-soft num">Ref. ${esc(c.ref)}</span>` : ''}
+            </div>
+            <div class="p-5 flex-1 flex flex-col">
+              <p class="text-[0.64rem] font-semibold tracking-[0.16em] uppercase text-gold-deep">${esc(c.model)}</p>
+              <h3 class="h-card text-[0.98rem] mt-1.5 leading-snug line-clamp-2" title="${esc(c.name)}">${esc(c.name)}</h3>
+              <p class="text-xs text-ink-faint mt-2">${[c.size && c.size + ' mm', c.metal, c.dial && c.dial + ' dial'].filter(Boolean).map(esc).join(' · ')}</p>
+              <div class="mt-auto pt-4 flex items-end justify-between gap-3">
+                <div class="pt-4"><p class="text-[0.6rem] font-semibold tracking-[0.14em] uppercase text-ink-faint">Market value</p><p class="text-[0.82rem] font-semibold text-ink num mt-0.5 whitespace-nowrap" data-price="${esc(c.ref)}">${priceTextRef(c.ref)}</p></div>
+                <a class="btn btn-outline btn-sm !px-3" href="${waWatchLink(`Hello Alizeh Bullion, I am interested in the Rolex ${c.name}${c.ref ? ` (ref. ${c.ref})` : ''}. Is it available, and what is the price?`)}" target="_blank" rel="noopener" aria-label="Enquire about the Rolex ${esc(c.name)} on WhatsApp">${waIcon('w-4 h-4')}Enquire</a>
+              </div>
+            </div>
+          </li>`;
+        const norm = (t) => String(t || '').toLowerCase().replace(/[-\s]+/g, ' ');
+        const filtered = () => {
+          const terms = norm(q).split(' ').filter(Boolean);
+          const list = CAT.filter((c) => (model === 'all' || c.model === model) && terms.every((t) => norm(`${c.name} ${c.model} ${c.ref} ${c.metal} ${c.dial} ${c.size}mm`).includes(t)));
+          const by = { featured: (a, b) => rank(a.model) - rank(b.model) || b.ref.localeCompare(a.ref, undefined, { numeric: true }), model: (a, b) => a.model.localeCompare(b.model) || a.ref.localeCompare(b.ref), ref: (a, b) => a.ref.localeCompare(b.ref, undefined, { numeric: true }), size: (a, b) => (+b.size || 0) - (+a.size || 0) }[sort];
+          return list.sort(by);
+        };
+        const renderCat = (append = false) => {
+          const list = filtered();
+          const from = append ? grid.children.length : 0;
+          const slice = list.slice(from, shown);
+          if (!append) grid.innerHTML = '';
+          grid.insertAdjacentHTML('beforeend', slice.map(card).join(''));
+          [...grid.children].slice(from).forEach((li, k) => { li.setAttribute('data-reveal', ''); li.style.setProperty('--d', `${(k % PAGE) * 40}ms`); });
+          reveal(grid);
+          document.querySelector('[data-cat-count]').textContent = `${list.length} of ${CAT.length} watches`;
+          document.querySelector('[data-cat-showing]').textContent = list.length ? `Showing ${Math.min(shown, list.length)} of ${list.length}` : '';
+          document.querySelector('[data-cat-more]').classList.toggle('hidden', shown >= list.length);
+          document.querySelector('[data-cat-empty]').classList.toggle('hidden', list.length > 0);
+        };
+        chipsEl.addEventListener('click', (e) => {
+          const b = e.target.closest('[data-m]'); if (!b) return;
+          model = b.dataset.m; shown = PAGE;
+          chipsEl.querySelectorAll('[data-m]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          renderCat();
+        });
+        let t; document.querySelector('[data-cat-q]').addEventListener('input', (e) => { clearTimeout(t); t = setTimeout(() => { q = e.target.value; shown = PAGE; renderCat(); }, 160); });
+        document.querySelector('[data-cat-sort]').addEventListener('change', (e) => { sort = e.target.value; shown = PAGE; renderCat(); });
+        document.querySelector('[data-cat-more]').addEventListener('click', () => { shown += PAGE; renderCat(true); });
+        document.querySelector('[data-cat-reset]').addEventListener('click', () => { q = ''; document.querySelector('[data-cat-q]').value = ''; chipsEl.querySelector('[data-m="all"]').click(); });
+        renderCat();
+      }
+
+      // Market values (USD averages from /api/watch-prices; empty until an API key is configured)
+      const renderPrices = () => document.querySelectorAll('[data-price]').forEach((el) => {
+        el.textContent = priceTextRef(el.dataset.price);
+      });
+      fetch('/api/watch-prices').then((r) => r.ok ? r.json() : {}).then((j) => { marketValues = j || {}; renderPrices(); }).catch(() => {});
+      document.addEventListener('ab:currency', renderPrices);
+      document.addEventListener('ab:rates', renderPrices);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+{
+  "_about": "Match rules for tools/import-watches.mjs. Key = family:nickname from assets/watches-data.js. 'any' = list of keyword sets; a product matches if its title contains every keyword of at least one set (case-insensitive). 'not' = keywords that disqualify a product.",
+  "source": "https://www.luxurysouq.com",
+  "watches": {
+    "daytona:Panda": {
+      "any": [
+        [
+          "126500LN-0001"
+        ],
+        [
+          "126500LN",
+          "white"
+        ]
+      ],
+      "not": [
+        "diamond"
+      ]
+    },
+    "daytona:Reverse Panda": {
+      "any": [
+        [
+          "126500LN-0002"
+        ],
+        [
+          "126500LN",
+          "black"
+        ]
+      ],
+      "not": [
+        "diamond"
+      ]
+    },
+    "daytona:John Mayer": {
+      "any": [
+        [
+          "116508",
+          "green"
+        ],
+        [
+          "126508",
+          "green"
+        ]
+      ],
+      "not": [
+        "diamond"
+      ]
+    },
+    "daytona:Ice Blue": {
+      "any": [
+        [
+          "126506",
+          "chestnut"
+        ],
+        [
+          "126506"
+        ]
+      ],
+      "not": [
+        "diamond",
+        "baguette"
+      ]
+    },
+    "daytona:Le Mans": {
+      "any": [
+        [
+          "126529LN"
+        ]
+      ]
+    },
+    "daytona:Rainbow": {
+      "any": [
+        [
+          "116598RBOW"
+        ]
+      ]
+    },
+    "daytona:Eye of the Tiger": {
+      "any": [
+        [
+          "116588TBR"
+        ]
+      ]
+    },
+    "daytona:Paul Newman": {
+      "any": [
+        [
+          "paul newman"
+        ],
+        [
+          "6239"
+        ],
+        [
+          "6263"
+        ]
+      ]
+    },
+    "gmt:Pepsi": {
+      "any": [
+        [
+          "126710BLRO-0001"
+        ],
+        [
+          "126710BLRO"
+        ]
+      ]
+    },
+    "gmt:Batman": {
+      "any": [
+        [
+          "126710BLNR-0003"
+        ],
+        [
+          "116710BLNR"
+        ]
+      ]
+    },
+    "gmt:Batgirl": {
+      "any": [
+        [
+          "126710BLNR-0002"
+        ]
+      ]
+    },
+    "gmt:Sprite": {
+      "any": [
+        [
+          "126720VTNR-0001"
+        ],
+        [
+          "126720VTNR"
+        ]
+      ]
+    },
+    "gmt:Root Beer": {
+      "any": [
+        [
+          "126711CHNR"
+        ],
+        [
+          "root beer"
+        ]
+      ]
+    },
+    "gmt:Bruce Wayne": {
+      "any": [
+        [
+          "126710GRNR"
+        ]
+      ]
+    },
+    "gmt:Coke": {
+      "any": [
+        [
+          "16710",
+          "coke"
+        ],
+        [
+          "16710",
+          "red"
+        ]
+      ]
+    },
+    "submariner:Hulk": {
+      "any": [
+        [
+          "116610LV"
+        ],
+        [
+          "116610L",
+          "green dial"
+        ],
+        [
+          "hulk"
+        ]
+      ]
+    },
+    "submariner:Kermit": {
+      "any": [
+        [
+          "16610LV"
+        ]
+      ]
+    },
+    "submariner:Starbucks": {
+      "any": [
+        [
+          "126610LV"
+        ]
+      ]
+    },
+    "submariner:Smurf": {
+      "any": [
+        [
+          "116619LB"
+        ],
+        [
+          "smurf"
+        ]
+      ]
+    },
+    "submariner:Cookie Monster": {
+      "any": [
+        [
+          "126619LB"
+        ]
+      ]
+    },
+    "submariner:Bluesy": {
+      "any": [
+        [
+          "126613LB"
+        ],
+        [
+          "116613LB"
+        ],
+        [
+          "bluesy"
+        ]
+      ]
+    },
+    "daydate:President": {
+      "any": [
+        [
+          "228238",
+          "champagne"
+        ],
+        [
+          "228238-0006"
+        ]
+      ],
+      "not": [
+        "diamond",
+        "baguette",
+        "onyx"
+      ]
+    },
+    "daydate:Olive": {
+      "any": [
+        [
+          "228238",
+          "olive"
+        ]
+      ],
+      "not": [
+        "diamond",
+        "baguette"
+      ]
+    },
+    "daydate:Ice Blue": {
+      "any": [
+        [
+          "228206",
+          "ice blue"
+        ],
+        [
+          "228206"
+        ]
+      ],
+      "not": [
+        "TBR",
+        "baguette",
+        "olive"
+      ]
+    },
+    "daydate:Puzzle": {
+      "any": [
+        [
+          "128235",
+          "puzzle"
+        ],
+        [
+          "128235",
+          "emoji"
+        ]
+      ]
+    },
+    "datejust:Wimbledon": {
+      "any": [
+        [
+          "126333",
+          "wimbledon"
+        ],
+        [
+          "126333",
+          "slate"
+        ]
+      ]
+    },
+    "datejust:Palm Motif": {
+      "any": [
+        [
+          "126334",
+          "palm"
+        ],
+        [
+          "126234",
+          "palm"
+        ]
+      ]
+    },
+    "datejust:Mint Green": {
+      "any": [
+        [
+          "126200",
+          "mint"
+        ]
+      ]
+    },
+    "datejust:Thunderbird": {
+      "any": [
+        [
+          "1625",
+          "thunderbird"
+        ],
+        [
+          "turn-o-graph"
+        ]
+      ]
+    }
+  }
+}
