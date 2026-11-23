@@ -251,7 +251,9 @@
       const row = (ic, title, body) => `<li class="flex gap-4"><span class="w-11 h-11 shrink-0 rounded-md border border-gold/40 grid place-items-center text-gold-deep bg-ivory/70">${icon[ic]}</span><div><p class="text-[0.7rem] font-semibold tracking-[0.14em] uppercase text-ink-faint">${title}</p><div class="text-ink mt-1">${body}</div></div></li>`;
       document.querySelector('[data-contact-list]').innerHTML = [
         row('pin', 'Address', CONFIG.addressLines.join('<br>')),
-        row('phone', 'Landline / Mobile', `<a class="nav-link !p-0" href="tel:${CONFIG.landlineHref}">${CONFIG.landlineDisplay}</a><br><a class="nav-link !p-0" href="tel:${CONFIG.phoneHref}">${CONFIG.phoneDisplay}</a>`),
+        CONFIG.landlineHref
+          ? row('phone', 'Landline / Mobile', `<a class="nav-link !p-0" href="tel:${CONFIG.landlineHref}">${CONFIG.landlineDisplay}</a><br><a class="nav-link !p-0" href="tel:${CONFIG.phoneHref}">${CONFIG.phoneDisplay}</a>`)
+          : row('phone', 'Phone', `<a class="nav-link !p-0" href="tel:${CONFIG.phoneHref}">${CONFIG.phoneDisplay}</a>`),
         row('mail', 'Email', `<a class="nav-link !p-0" href="mailto:${CONFIG.email}">${CONFIG.email}</a>`),
         row('clock', 'Opening hours', CONFIG.hours.map(([d, h]) => `${d}: <span class="num">${h}</span>`).join('<br>')),
       ].join('');

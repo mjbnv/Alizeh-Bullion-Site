@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "serve": "node serve.mjs",
-    "screenshot": "node screenshot.mjs"
+    "screenshot": "node screenshot.mjs",
+    "build": "node build.mjs"
   },
   "dependencies": {
     "puppeteer": "^24.0.0"

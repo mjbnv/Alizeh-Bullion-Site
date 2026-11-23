@@ -4,10 +4,10 @@
   const CONFIG = {
     whatsapp: '971502315116',          // main enquiries (gold, rates, general). International format, digits only
     whatsappWatches: '971547585007',   // watch dealer: used only by the watch buttons on the watches page
-    phoneDisplay: '+971 50 000 0000',
-    phoneHref: '+971500000000',
-    landlineDisplay: '+971 4 000 0000',
-    landlineHref: '+97140000000',
+    phoneDisplay: '+971 50 231 5116',
+    phoneHref: '+971502315116',
+    landlineDisplay: '',             // leave empty if there is no separate landline
+    landlineHref: '',
     email: 'info@alizehbullion.com',
     addressLines: ['Showroom 00, Gold Souk Building', 'Your Street, Your City'],
     hours: [['Saturday – Thursday', '10:00 – 21:00'], ['Friday', '16:00 – 21:00']],

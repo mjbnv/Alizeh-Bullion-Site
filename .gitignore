@@ -4,3 +4,6 @@
 node_modules/
 temporary screenshots/
 tools/cache/
+dist/
+.dev.vars
+.wrangler/

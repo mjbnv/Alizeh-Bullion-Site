@@ -17,6 +17,12 @@
     .floaty { animation: floaty 7s ease-in-out infinite; }
     .floaty.b { animation-delay: -2.3s; } .floaty.c { animation-delay: -4.6s; }
     @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    /* Brand picker: the chosen brand gets a gold outline; the watch rises slightly on hover */
+    .brand-tile { cursor: pointer; }
+    .brand-tile[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--gold), 0 18px 40px -22px rgba(138, 106, 47, .45); }
+    .brand-tile img { transition: transform .6s var(--spring); }
+    .brand-tile:hover img, .brand-tile:focus-visible img { transform: translateY(0) scale(1.04); }
+    [data-brand-pick][aria-pressed="true"]:not(.brand-tile) { color: var(--ink); font-weight: 600; }
   </style>
 </head>
 <body data-page="watches" class="antialiased">
@@ -28,10 +34,10 @@
       <div class="max-w-site mx-auto px-5 md:px-8 pt-16 pb-16 md:pt-24 md:pb-24 grid lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-6" data-stagger="120">
           <p class="label">Luxury watches</p>
-          <h1 class="h-display text-[clamp(2.4rem,5vw,4.2rem)] mt-5">Rolex icons, authenticated.</h1>
-          <p class="lede mt-5">From the Daytona "Panda" to the GMT-Master II "Pepsi", we buy, sell and trade the world's most recognised watches, with <span data-total-count>hundreds of</span> Rolex references in our catalogue. Every piece is verified for authenticity, movement and condition.</p>
+          <h1 class="h-display text-[clamp(2.4rem,5vw,4.2rem)] mt-5">Fine watches, authenticated.</h1>
+          <p class="lede mt-5">From the Rolex Daytona "Panda" to the Patek Philippe Nautilus, we buy, sell and trade the world's most recognised watches, with <span data-total-count>thousands of watches</span> in our catalogue. Every piece is verified for authenticity, movement and condition.</p>
           <div class="flex flex-wrap gap-3 mt-9">
-            <a class="btn btn-gold" href="#all-rolex">Browse all Rolex</a>
+            <a class="btn btn-gold" href="#brands">Choose a brand</a>
             <a class="btn btn-outline" href="#sell">Sell your watch</a>
           </div>
         </div>
@@ -43,7 +49,28 @@
       </div>
     </section>
 
-    <!-- Sticky family tabs -->
+    <!-- Brand picker -->
+    <section id="brands" class="surface-ivory py-20 md:py-24">
+      <div class="max-w-site mx-auto px-5 md:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6" data-reveal>
+          <div>
+            <p class="label">Shop by brand</p>
+            <h2 class="sec-title mt-5">Which brand are you looking for?</h2>
+            <p class="text-ink-soft mt-4 max-w-2xl">Pick a brand to see every watch we have from it.</p>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm self-start lg:self-auto" data-brand-pick="all">See all watches</button>
+        </div>
+        <ul class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5" data-brand-tiles></ul>
+        <div class="mt-10 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5" data-brand-other>
+          <label for="other-brand" class="text-sm text-ink-soft shrink-0">Looking for another brand?</label>
+          <select id="other-brand" class="field sm:max-w-xs" data-brand-select>
+            <option value="">Choose a brand</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticky tabs: brand navigation, plus Rolex collections when Rolex is chosen -->
     <nav id="collection" class="sticky z-40 bg-[#F8F7F3]/[.97] backdrop-blur-md border-y border-gold/25" style="top:5rem" aria-label="Watch collections" data-tabbar>
       <div class="max-w-site mx-auto px-5 md:px-8 flex items-center justify-between gap-6">
         <div class="tabbar flex gap-7 overflow-x-auto no-scrollbar" data-tabs></div>
@@ -51,16 +78,16 @@
       </div>
     </nav>
 
-    <div data-families></div>
+    <div data-families hidden></div>
 
-    <!-- Full Rolex collection -->
-    <section id="all-rolex" class="surface-ivory py-20 md:py-24" data-family>
+    <!-- Full collection, all brands -->
+    <section id="all-watches" class="surface-ivory py-20 md:py-24" data-family>
       <div class="max-w-site mx-auto px-5 md:px-8">
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6" data-reveal>
           <div>
-            <p class="label">Full collection</p>
-            <h2 class="sec-title mt-5">Every Rolex in our catalogue.</h2>
-            <p class="text-ink-soft mt-4 max-w-2xl">Search by model, nickname or reference number. Availability and pricing are confirmed on enquiry.</p>
+            <p class="label" data-cat-label>Full collection</p>
+            <h2 class="sec-title mt-5" data-cat-title>Every watch in our catalogue.</h2>
+            <p class="text-ink-soft mt-4 max-w-2xl" data-cat-sub>Choose a collection, or search by name or reference number. Availability and pricing are confirmed on enquiry.</p>
           </div>
           <p class="text-sm text-ink-faint" data-cat-count aria-live="polite"></p>
         </div>
@@ -68,29 +95,31 @@
         <div class="panel p-4 md:p-5 mt-10 flex flex-col gap-4" data-reveal>
           <div class="grid md:grid-cols-12 gap-3">
             <label class="md:col-span-8 relative block">
-              <span class="sr-only">Search the Rolex collection</span>
+              <span class="sr-only">Search the watch collection</span>
               <svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gold-deep pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-              <input type="search" class="field !pl-12" placeholder="Search e.g. Daytona, 126710, Sprite, white gold, 41mm" data-cat-q autocomplete="off">
+              <input type="search" class="field !pl-12" placeholder="Search e.g. Nautilus, Royal Oak, 126710, white gold, 41mm" data-cat-q autocomplete="off">
             </label>
             <label class="md:col-span-4 flex items-center gap-3">
               <span class="text-[0.68rem] font-semibold tracking-[0.14em] uppercase text-ink-faint shrink-0">Sort</span>
               <select class="field" data-cat-sort>
                 <option value="featured">Featured</option>
-                <option value="model">Model (A–Z)</option>
+                <option value="brand">Brand (A–Z)</option>
+                <option value="model">Collection (A–Z)</option>
                 <option value="ref">Reference number</option>
                 <option value="size">Case size</option>
               </select>
             </label>
           </div>
-          <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" role="group" aria-label="Filter by model" data-cat-models></div>
+          <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" role="group" aria-label="Filter by brand or collection" data-cat-models></div>
         </div>
 
         <ul class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" data-cat-grid></ul>
+        <div data-cat-groups hidden></div>
         <div class="hidden text-center py-16" data-cat-empty>
           <p class="text-ink-soft">No watches match your search.</p>
           <div class="flex flex-wrap justify-center gap-3 mt-5">
             <button type="button" class="btn btn-outline btn-sm" data-cat-reset>Clear filters</button>
-            <a class="btn btn-wa btn-sm" data-wa-to="watches" data-wa="Hello Alizeh Bullion, I am looking for a specific Rolex that I could not find on your website." href="#"><span data-wa-icon></span>Ask us to source it</a>
+            <a class="btn btn-wa btn-sm" data-wa-to="watches" data-wa="Hello Alizeh Bullion, I am looking for a specific watch that I could not find on your website." href="#"><span data-wa-icon></span>Ask us to source it</a>
           </div>
         </div>
         <div class="mt-10 flex flex-col items-center gap-3">
@@ -158,8 +187,13 @@
       document.querySelectorAll('[data-hero]').forEach((el) => (el.innerHTML = visual(find(el.dataset.hero), true)));
       document.querySelector('[data-currency-switch-slot]').outerHTML = switcher('Watch price currency');
 
-      // Tabs
-      document.querySelector('[data-tabs]').innerHTML = FAM.map((f, i) => `<a href="#${f.id}" aria-current="${i === 0}">${f.short}</a>`).join('') + (window.AB_CATALOGUE?.length ? `<a href="#all-rolex" aria-current="false">All Rolex (${window.AB_CATALOGUE.filter((c) => /rolex/i.test(c.brand)).length})</a>` : '');
+      // Tabs: "All brands", the Rolex collections (only while Rolex is chosen), then the watch grid.
+      const renderTabs = (brand, count) => {
+        const rolex = brand === 'Rolex';
+        document.querySelector('[data-tabs]').innerHTML = `<a href="#brands" aria-current="false">All brands</a>`
+          + (rolex ? FAM.map((f) => `<a href="#${f.id}" aria-current="false">${f.short}</a>`).join('') : '')
+          + `<a href="#all-watches" aria-current="false">${brand === 'all' ? 'All watches' : `All ${brand}`} (${count.toLocaleString('en-US')})</a>`;
+      };
 
       // Families
       let marketValues = {};
@@ -218,83 +252,203 @@
       setTimeout(syncTop, 50);
 
       // Active tab while scrolling
-      const tabs = [...document.querySelectorAll('[data-tabs] a')];
       const spy = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
           if (!e.isIntersecting) return;
-          tabs.forEach((t) => {
+          document.querySelectorAll('[data-tabs] a').forEach((t) => {
             const on = t.getAttribute('href') === '#' + e.target.id;
             t.setAttribute('aria-current', String(on));
             if (on) { const box = t.parentElement; box.scrollTo({ left: t.offsetLeft - box.clientWidth / 2 + t.offsetWidth / 2, behavior: 'smooth' }); }
           });
         });
       }, { rootMargin: '-40% 0px -55% 0px' });
-      document.querySelectorAll('[data-family]').forEach((s) => spy.observe(s));
+      document.querySelectorAll('[data-family], #brands').forEach((s) => spy.observe(s));
 
-      // ── Full collection ──
-      const CAT = (window.AB_CATALOGUE || []).filter((c) => /rolex/i.test(c.brand));
-      const catSection = document.getElementById('all-rolex');
+      // ── Full collection (all brands) ──
+      const CAT = window.AB_CATALOGUE || [];
+      const catSection = document.getElementById('all-watches');
       if (!CAT.length) catSection.remove();
       else {
-        document.querySelector('[data-total-count]').textContent = `over ${Math.floor(CAT.length / 10) * 10}`;
+        const countBy = (list, key) => Object.entries(list.reduce((a, c) => ((a[c[key]] = (a[c[key]] || 0) + 1), a), {}));
+        const BRANDS = countBy(CAT, 'brand').sort((a, b) => b[1] - a[1]);
+        document.querySelector('[data-total-count]').textContent = `over ${(Math.floor(CAT.length / 100) * 100).toLocaleString('en-US')} watches from ${BRANDS.length} brand${BRANDS.length === 1 ? '' : 's'}`;
         const PAGE = 24;
-        let shown = PAGE, model = 'all', q = '', sort = 'featured';
-        const ORDER = ['Cosmograph Daytona', 'GMT-Master II', 'Submariner', 'Day-Date', 'Datejust', 'Sky-Dweller', 'Yacht-Master', 'Sea-Dweller', 'Land-Dweller', 'Explorer', 'Oyster Perpetual', 'Lady-Datejust', '1908', 'Air-King', 'Milgauss', 'Pearlmaster', 'Cellini'];
-        const rank = (m) => { const i = ORDER.indexOf(m); return i < 0 ? 99 : i; };
+        let shown = PAGE, brand = 'all', model = 'all', q = '', sort = 'featured';
+        // Featured order: brands by how many listings they have, Rolex collections in their usual order.
+        // The house's main brands, in this order. They get the large tiles and lead the "featured" sort.
+        const MAIN_BRANDS = ['Rolex', 'Patek Philippe', 'Richard Mille', 'Audemars Piguet'];
+        // Brands whose watches are shown split into collections (main brands plus Omega, which is in the dropdown).
+        const GROUPED_BRANDS = [...MAIN_BRANDS, 'Omega'];
+        const brandRank = Object.fromEntries([...MAIN_BRANDS, ...BRANDS.map(([b]) => b).filter((b) => !MAIN_BRANDS.includes(b))].map((b, i) => [b, i]));
+        const ROLEX_ORDER = ['Cosmograph Daytona', 'GMT-Master II', 'Submariner', 'Day-Date', 'Datejust', 'Sky-Dweller', 'Yacht-Master', 'Sea-Dweller', 'Land-Dweller', 'Explorer', 'Oyster Perpetual', 'Lady-Datejust', '1908', 'Air-King', 'Milgauss', 'Pearlmaster', 'Cellini'];
+        const modelRank = (c) => { if (c.model === 'Other models') return 999; const i = c.brand === 'Rolex' ? ROLEX_ORDER.indexOf(c.model) : -1; return i < 0 ? 99 : i; };
         const grid = document.querySelector('[data-cat-grid]');
-        const models = Object.entries(CAT.reduce((a, c) => ((a[c.model] = (a[c.model] || 0) + 1), a), {})).sort((a, b) => b[1] - a[1]);
         const chipsEl = document.querySelector('[data-cat-models]');
-        chipsEl.innerHTML = `<button type="button" class="chip whitespace-nowrap" data-m="all" aria-pressed="true">All models <span class="text-ink-faint">${CAT.length}</span></button>` +
-          models.map(([m, n]) => `<button type="button" class="chip whitespace-nowrap" data-m="${m}" aria-pressed="false">${m} <span class="text-ink-faint">${n}</span></button>`).join('');
-        const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-        const card = (c) => `
+        const esc = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const chip = (attr, val, label, n, on) => `<button type="button" class="chip whitespace-nowrap" ${attr}="${esc(val)}" aria-pressed="${on}">${esc(label)} <span class="text-ink-faint">${n.toLocaleString('en-US')}</span></button>`;
+        // Brand chips first; picking a brand swaps the row to that brand's collections.
+        const renderChips = () => {
+          if (brand === 'all') {
+            chipsEl.innerHTML = chip('data-b', 'all', 'All brands', CAT.length, true) + BRANDS.map(([b, n]) => chip('data-b', b, b, n, false)).join('');
+          } else {
+            const inBrand = CAT.filter((c) => c.brand === brand);
+            const models = countBy(inBrand, 'model').sort((a, b) => (a[0] === 'Other models') - (b[0] === 'Other models') || b[1] - a[1]);
+            chipsEl.innerHTML = `<button type="button" class="chip whitespace-nowrap" data-b="all" aria-pressed="false" aria-label="Back to all brands">‹ All brands</button>`
+              + chip('data-m', 'all', `All ${brand}`, inBrand.length, model === 'all')
+              + (models.length > 1 ? models.map(([m, n]) => chip('data-m', m, m, n, model === m)).join('') : '');
+          }
+          chipsEl.scrollLeft = 0;
+        };
+        const card = (c) => {
+          const full = `${c.brand} ${c.name}`;
+          return `
           <li class="group panel lift overflow-hidden flex flex-col">
             <div class="relative surface-champagne h-60 grid place-items-center overflow-hidden">
               <div class="absolute inset-0 pattern-mark opacity-50"></div>
-              <img src="${c.file}" alt="Rolex ${esc(c.name)}" loading="lazy" decoding="async" class="watch-photo relative w-[150px] h-[188px] object-contain translate-y-2">
+              <img src="${esc(c.file)}" alt="${esc(full)}" loading="lazy" decoding="async" class="watch-photo relative w-[150px] h-[188px] object-contain translate-y-2">
               ${c.ref ? `<span class="absolute left-3 top-3 rounded-md bg-ivory/90 border border-gold/30 px-2 py-0.5 text-[0.64rem] font-semibold tracking-[0.06em] uppercase text-ink-soft num">Ref. ${esc(c.ref)}</span>` : ''}
             </div>
             <div class="p-5 flex-1 flex flex-col">
-              <p class="text-[0.64rem] font-semibold tracking-[0.16em] uppercase text-gold-deep">${esc(c.model)}</p>
+              <p class="text-[0.64rem] font-semibold tracking-[0.16em] uppercase text-gold-deep">${esc(c.brand)}${c.model && c.model !== 'Other models' ? ` <span class="text-ink-faint font-medium">/ ${esc(c.model)}</span>` : ''}</p>
               <h3 class="h-card text-[0.98rem] mt-1.5 leading-snug line-clamp-2" title="${esc(c.name)}">${esc(c.name)}</h3>
               <p class="text-xs text-ink-faint mt-2">${[c.size && c.size + ' mm', c.metal, c.dial && c.dial + ' dial'].filter(Boolean).map(esc).join(' · ')}</p>
               <div class="mt-auto pt-4 flex items-end justify-between gap-3">
                 <div class="pt-4"><p class="text-[0.6rem] font-semibold tracking-[0.14em] uppercase text-ink-faint">Market value</p><p class="text-[0.82rem] font-semibold text-ink num mt-0.5 whitespace-nowrap" data-price="${esc(c.ref)}">${priceTextRef(c.ref)}</p></div>
-                <a class="btn btn-outline btn-sm !px-3" href="${waWatchLink(`Hello Alizeh Bullion, I am interested in the Rolex ${c.name}${c.ref ? ` (ref. ${c.ref})` : ''}. Is it available, and what is the price?`)}" target="_blank" rel="noopener" aria-label="Enquire about the Rolex ${esc(c.name)} on WhatsApp">${waIcon('w-4 h-4')}Enquire</a>
+                <a class="btn btn-outline btn-sm !px-3" href="${waWatchLink(`Hello Alizeh Bullion, I am interested in the ${full}${c.ref && !c.name.includes(c.ref) ? ` (ref. ${c.ref})` : ''}. Is it available, and what is the price?`)}" target="_blank" rel="noopener" aria-label="Enquire about the ${esc(full)} on WhatsApp">${waIcon('w-4 h-4')}Enquire</a>
               </div>
             </div>
           </li>`;
-        const norm = (t) => String(t || '').toLowerCase().replace(/[-\s]+/g, ' ');
+        };
+        const norm = (t) => String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[-\s]+/g, ' ');
+        const hay = CAT.map((c) => norm(`${c.brand} ${c.name} ${c.model} ${c.ref} ${c.metal} ${c.dial} ${c.size}mm`));
         const filtered = () => {
           const terms = norm(q).split(' ').filter(Boolean);
-          const list = CAT.filter((c) => (model === 'all' || c.model === model) && terms.every((t) => norm(`${c.name} ${c.model} ${c.ref} ${c.metal} ${c.dial} ${c.size}mm`).includes(t)));
-          const by = { featured: (a, b) => rank(a.model) - rank(b.model) || b.ref.localeCompare(a.ref, undefined, { numeric: true }), model: (a, b) => a.model.localeCompare(b.model) || a.ref.localeCompare(b.ref), ref: (a, b) => a.ref.localeCompare(b.ref, undefined, { numeric: true }), size: (a, b) => (+b.size || 0) - (+a.size || 0) }[sort];
+          const list = CAT.filter((c, i) => (brand === 'all' || c.brand === brand) && (model === 'all' || c.model === model) && terms.every((t) => hay[i].includes(t)));
+          const byRef = (a, b) => b.ref.localeCompare(a.ref, undefined, { numeric: true });
+          const by = {
+            featured: (a, b) => brandRank[a.brand] - brandRank[b.brand] || modelRank(a) - modelRank(b) || byRef(a, b),
+            brand: (a, b) => a.brand.localeCompare(b.brand) || a.name.localeCompare(b.name),
+            model: (a, b) => a.model.localeCompare(b.model) || a.brand.localeCompare(b.brand) || a.ref.localeCompare(b.ref),
+            ref: (a, b) => a.ref.localeCompare(b.ref, undefined, { numeric: true }),
+            size: (a, b) => (+b.size || 0) - (+a.size || 0),
+          }[sort];
           return list.sort(by);
         };
+        // Main brands are shown split into their collections (Royal Oak, Royal Oak Offshore, …),
+        // each with a preview row and a "See all" button that opens that collection on its own.
+        const groupsEl = document.querySelector('[data-cat-groups]');
+        const PREVIEW = 4;
+        const renderGroups = (list) => {
+          const by = {};
+          list.forEach((c) => (by[c.model] ||= []).push(c));
+          const order = Object.keys(by).sort((a, b) => (a === 'Other models') - (b === 'Other models')
+            || (brand === 'Rolex' ? modelRank({ brand, model: a }) - modelRank({ brand, model: b }) : 0)
+            || by[b].length - by[a].length);
+          groupsEl.innerHTML = order.map((m) => {
+            const items = by[m], title = m === 'Other models' ? `Other ${brand} watches` : m;
+            return `<section class="mt-14 first:mt-8" aria-label="${esc(title)}">
+              <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 border-b border-gold/25 pb-3">
+                <h3 class="font-display text-[1.6rem] md:text-[1.9rem] leading-tight tracking-[-0.02em]">${esc(title)} <span class="font-sans text-sm text-ink-faint num align-middle">${items.length}</span></h3>
+                ${items.length > PREVIEW ? `<button type="button" class="link text-sm" data-group="${esc(m)}">See all ${items.length} <span class="arr" aria-hidden="true">›</span></button>` : ''}
+              </div>
+              <ul class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">${items.slice(0, PREVIEW).map(card).join('')}</ul>
+            </section>`;
+          }).join('');
+          groupsEl.querySelectorAll('li').forEach((li, k) => { li.setAttribute('data-reveal', ''); li.style.setProperty('--d', `${(k % PREVIEW) * 50}ms`); });
+          reveal(groupsEl);
+        };
+        groupsEl.addEventListener('click', (e) => {
+          const b = e.target.closest('[data-group]'); if (!b) return;
+          model = b.dataset.group; shown = PAGE;
+          chipsEl.querySelectorAll('[data-m]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.m === model)));
+          renderCat();
+          catSection.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        });
+
         const renderCat = (append = false) => {
           const list = filtered();
+          const grouped = GROUPED_BRANDS.includes(brand) && model === 'all' && new Set(list.map((c) => c.model)).size > 1;
+          grid.classList.toggle('hidden', grouped); groupsEl.hidden = !grouped;
+          if (grouped) {
+            renderGroups(list);
+            document.querySelector('[data-cat-count]').textContent = `${list.length.toLocaleString('en-US')} ${brand} watches`;
+            document.querySelector('[data-cat-showing]').textContent = '';
+            document.querySelector('[data-cat-more]').classList.add('hidden');
+            document.querySelector('[data-cat-empty]').classList.add('hidden');
+            return;
+          }
           const from = append ? grid.children.length : 0;
           const slice = list.slice(from, shown);
           if (!append) grid.innerHTML = '';
           grid.insertAdjacentHTML('beforeend', slice.map(card).join(''));
           [...grid.children].slice(from).forEach((li, k) => { li.setAttribute('data-reveal', ''); li.style.setProperty('--d', `${(k % PAGE) * 40}ms`); });
           reveal(grid);
-          document.querySelector('[data-cat-count]').textContent = `${list.length} of ${CAT.length} watches`;
-          document.querySelector('[data-cat-showing]').textContent = list.length ? `Showing ${Math.min(shown, list.length)} of ${list.length}` : '';
+          document.querySelector('[data-cat-count]').textContent = `${list.length.toLocaleString('en-US')} of ${CAT.length.toLocaleString('en-US')} watches`;
+          document.querySelector('[data-cat-showing]').textContent = list.length ? `Showing ${Math.min(shown, list.length).toLocaleString('en-US')} of ${list.length.toLocaleString('en-US')}` : '';
           document.querySelector('[data-cat-more]').classList.toggle('hidden', shown >= list.length);
           document.querySelector('[data-cat-empty]').classList.toggle('hidden', list.length > 0);
         };
+        // ── Brand picker ──
+        const families = document.querySelector('[data-families]');
+        const SIGNATURE = { Rolex: 'Cosmograph Daytona', 'Audemars Piguet': 'Royal Oak', 'Patek Philippe': 'Nautilus', Hublot: 'Big Bang', Cartier: 'Santos', Omega: 'Speedmaster', 'Franck Muller': 'Vanguard', Breitling: 'Navitimer', 'Ulysse Nardin': 'Freak', Bvlgari: 'Octo' };
+        // Hand-picked tile photos (store listing id). Brands not listed here use their signature model.
+        const TILE_PICK = { 'Richard Mille': 9117460529315 }; // RM 35-02 Rafael Nadal, red Quartz TPT
+        const sampleOf = (b) => {
+          const list = CAT.filter((c) => c.brand === b);
+          const picked = list.find((c) => c.id === TILE_PICK[b]);
+          if (picked) return picked;
+          return list.find((c) => c.model === SIGNATURE[b]) || list.find((c) => c.model !== 'Other models') || list[0];
+        };
+        const brandCount = Object.fromEntries(BRANDS);
+        document.querySelector('[data-brand-tiles]').innerHTML = MAIN_BRANDS.filter((b) => brandCount[b]).map((b) => { const n = brandCount[b];
+          const s = sampleOf(b);
+          return `<li class="h-full"><button type="button" class="brand-tile group panel lift overflow-hidden flex h-full w-full flex-col text-left" data-brand-pick="${esc(b)}" aria-pressed="false">
+            <span class="relative surface-champagne h-52 md:h-64 w-full grid place-items-center overflow-hidden">
+              <span class="absolute inset-0 pattern-mark opacity-50"></span>
+              ${s ? `<img src="${esc(s.file)}" alt="" loading="lazy" decoding="async" class="watch-photo relative w-[136px] h-[170px] md:w-[168px] md:h-[210px] object-contain translate-y-2">` : ''}
+            </span>
+            <span class="p-4 md:p-5 flex flex-col gap-1">
+              <span class="font-display text-xl leading-tight tracking-[-0.01em]">${esc(b)}</span>
+              <span class="text-xs text-ink-faint num shrink-0">${n.toLocaleString('en-US')} watches</span>
+            </span>
+          </button></li>`;
+        }).join('');
+        // A–Z index, grouped by first letter (numbers and symbols under "#")
+        // Every other brand, A–Z, in one dropdown
+        const others = BRANDS.filter(([b]) => !MAIN_BRANDS.includes(b)).sort((a, b) => a[0].localeCompare(b[0]));
+        const brandSelect = document.querySelector('[data-brand-select]');
+        brandSelect.insertAdjacentHTML('beforeend', others.map(([b, n]) => `<option value="${esc(b)}">${esc(b)} (${n.toLocaleString('en-US')})</option>`).join(''));
+        brandSelect.addEventListener('change', () => { if (brandSelect.value) selectBrand(brandSelect.value); });
+        document.querySelector('[data-brand-other]').classList.toggle('hidden', !others.length);
+
+        const catTitle = document.querySelector('[data-cat-title]'), catLabel = document.querySelector('[data-cat-label]');
+        const selectBrand = (b, { scroll = true, push = true } = {}) => {
+          brand = BRANDS.some(([x]) => x === b) ? b : 'all'; model = 'all'; shown = PAGE;
+          document.querySelectorAll('[data-brand-pick]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.brandPick === brand && brand !== 'all')));
+          brandSelect.value = MAIN_BRANDS.includes(brand) || brand === 'all' ? '' : brand;
+          const isRolex = brand === 'Rolex';
+          families.hidden = !isRolex;
+          catLabel.textContent = brand === 'all' ? 'Full collection' : isRolex ? 'Every Rolex' : 'Collection';
+          catTitle.textContent = brand === 'all' ? 'Every watch in our catalogue.' : brand;
+          renderTabs(brand, brand === 'all' ? CAT.length : CAT.filter((c) => c.brand === brand).length);
+          renderChips(); renderCat();
+          if (push) { const u = new URL(location.href); brand === 'all' ? u.searchParams.delete('brand') : u.searchParams.set('brand', brand); u.hash = ''; history.replaceState(null, '', u); }
+          if (scroll) (isRolex ? families : catSection).scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        };
+        document.addEventListener('click', (e) => { const b = e.target.closest('[data-brand-pick]'); if (b) selectBrand(b.dataset.brandPick); });
+
         chipsEl.addEventListener('click', (e) => {
-          const b = e.target.closest('[data-m]'); if (!b) return;
-          model = b.dataset.m; shown = PAGE;
-          chipsEl.querySelectorAll('[data-m]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-          renderCat();
+          const b = e.target.closest('[data-b], [data-m]'); if (!b) return;
+          if (b.dataset.b !== undefined) { selectBrand(b.dataset.b, { scroll: false }); return; }
+          model = b.dataset.m; chipsEl.querySelectorAll('[data-m]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          shown = PAGE; renderCat();
         });
         let t; document.querySelector('[data-cat-q]').addEventListener('input', (e) => { clearTimeout(t); t = setTimeout(() => { q = e.target.value; shown = PAGE; renderCat(); }, 160); });
         document.querySelector('[data-cat-sort]').addEventListener('change', (e) => { sort = e.target.value; shown = PAGE; renderCat(); });
         document.querySelector('[data-cat-more]').addEventListener('click', () => { shown += PAGE; renderCat(true); });
-        document.querySelector('[data-cat-reset]').addEventListener('click', () => { q = ''; document.querySelector('[data-cat-q]').value = ''; chipsEl.querySelector('[data-m="all"]').click(); });
-        renderCat();
+        document.querySelector('[data-cat-reset]').addEventListener('click', () => { q = ''; document.querySelector('[data-cat-q]').value = ''; selectBrand('all', { scroll: false }); });
+        // Open on the brand in the link (watches.html?brand=Patek%20Philippe), otherwise all watches.
+        selectBrand(new URLSearchParams(location.search).get('brand') || 'all', { scroll: !!new URLSearchParams(location.search).get('brand'), push: false });
       }
 
       // Market values (USD averages from /api/watch-prices; empty until an API key is configured)

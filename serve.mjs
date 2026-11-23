@@ -15,8 +15,8 @@ try {
     if (m && !(m[1] in process.env)) process.env[m[1]] = m[2].replace(/^(['"])(.*)\1$/, '$2');
   }
 } catch { /* no .env: rates run in demo mode */ }
-const { getRates } = await import('./api/rates.mjs');
-const { getWatchPrices } = await import('./api/watch-prices.mjs');
+const { getRates } = await import('./lib/rates.mjs');
+const { getWatchPrices } = await import('./lib/watch-prices.mjs');
 
 const types = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
