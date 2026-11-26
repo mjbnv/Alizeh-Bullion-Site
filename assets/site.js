@@ -197,16 +197,10 @@
   function renderTicker() {
     const el = document.querySelector('[data-ticker]');
     if (!el || !rates) return;
-    const item = (label, bid, ask) => `<span class="flex items-center gap-2 px-5 whitespace-nowrap"><span class="font-semibold text-ink">${label}</span><span class="num">Bid ${fmt(bid)}</span><span class="text-gold" aria-hidden="true">·</span><span class="num">Ask ${fmt(ask)}</span></span><span class="text-gold/70" aria-hidden="true">|</span>`;
-    const once = [
-      item('Gold oz', quote('XAU', 'bid', 'oz'), quote('XAU', 'ask', 'oz')),
-      item('Gold 24K g', quote('XAU', 'bid', 'g', '24K'), quote('XAU', 'ask', 'g', '24K')),
-      item('Gold 22K g', quote('XAU', 'bid', 'g', '22K'), quote('XAU', 'ask', 'g', '22K')),
-      item('Gold tola', quote('XAU', 'bid', 'tola'), quote('XAU', 'ask', 'tola')),
-      item('Silver oz', quote('XAG', 'bid', 'oz'), quote('XAG', 'ask', 'oz')),
-      item('Platinum oz', quote('XPT', 'bid', 'oz'), quote('XPT', 'ask', 'oz')),
-      item('Palladium oz', quote('XPD', 'bid', 'oz'), quote('XPD', 'ask', 'oz')),
-    ].join('') + (rates.demo ? '<span class="px-5 text-gold-dark whitespace-nowrap">Sample prices</span><span class="text-gold/70" aria-hidden="true">|</span>' : '');
+    // Gold per troy ounce in USD only, for now.
+    const usdOz = (side) => { const v = rates.quotes?.XAU?.[side]; return v == null ? null : v; };
+    const item = (label, bid, ask) => `<span class="flex items-center gap-2 px-5 whitespace-nowrap"><span class="font-semibold text-ink">${label}</span><span class="num">Bid ${fmt(bid, 'USD')}</span><span class="text-gold" aria-hidden="true">·</span><span class="num">Ask ${fmt(ask, 'USD')}</span></span><span class="text-gold/70" aria-hidden="true">|</span>`;
+    const once = Array(4).fill(item('Gold per troy ounce', usdOz('bid'), usdOz('ask'))).join('') + (rates.demo ? '<span class="px-5 text-gold-dark whitespace-nowrap">Sample prices</span><span class="text-gold/70" aria-hidden="true">|</span>' : '');
     el.innerHTML = `<span class="flex items-center">${once}</span><span class="flex items-center" aria-hidden="true">${once}</span>`;
   }
 

@@ -7,3 +7,5 @@ tools/cache/
 dist/
 .dev.vars
 .wrangler/
+data/
+.DS_Store

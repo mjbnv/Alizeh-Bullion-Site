@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Live Metal Rates | Alizeh Bullion</title>
-  <meta name="description" content="Live gold, silver, platinum and palladium bid and ask prices in USD, AED and PKR, per ounce, gram, tola and kilo.">
+  <title>Live Gold Rate | Alizeh Bullion</title>
+  <meta name="description" content="Live gold price per troy ounce in US dollars, with Alizeh Bullion's buy and sell prices.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath fill='%23C6A15B' d='M4 88 44 2h14l16 38-14 12-9-22-30 58zM64 58l14-12 18 42H80z'/%3E%3C/svg%3E">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,19 +21,14 @@
     <section class="surface-marble grain">
       <div class="max-w-site mx-auto px-5 md:px-8 pt-16 pb-16 md:pt-24 md:pb-20 grid lg:grid-cols-12 gap-10 items-end">
         <div class="lg:col-span-7" data-stagger="120">
-          <p class="label">Live metal rates</p>
-          <h1 class="h-display text-[clamp(2.4rem,5vw,4rem)] mt-5">Current gold and precious metal prices.</h1>
-          <p class="lede mt-5">Bid and ask prices for gold, silver, platinum and palladium, updated automatically throughout the trading day.</p>
+          <p class="label">Live gold rate</p>
+          <h1 class="h-display text-[clamp(2.4rem,5vw,4rem)] mt-5">Gold, priced as the market moves.</h1>
+          <p class="lede mt-5">The international gold price per troy ounce in US dollars, streamed live, alongside the prices we buy and sell at.</p>
         </div>
         <div class="lg:col-span-5 lg:justify-self-end w-full max-w-md" data-reveal="right">
           <div class="panel-float p-6">
-            <div class="flex items-center justify-between gap-4">
-              <span class="text-[0.7rem] font-semibold tracking-[0.16em] uppercase text-ink-faint">Display currency</span>
-              <span data-currency-switch-slot></span>
-            </div>
-            <div class="rule-gold my-5"></div>
             <div class="flex items-center gap-3" aria-live="polite">
-              <span class="relative flex w-2.5 h-2.5" aria-hidden="true"><span data-dot class="absolute inset-0 rounded-full bg-gold"></span><span data-ping class="absolute inset-0 rounded-full bg-gold animate-ping opacity-60"></span></span>
+              <span class="relative flex w-2.5 h-2.5" aria-hidden="true"><span data-dot class="absolute inset-0 rounded-full bg-gold"></span><span data-ping class="absolute inset-0 rounded-full bg-gold opacity-60"></span></span>
               <p class="text-sm text-ink-soft"><span class="font-semibold text-ink" data-live>Connecting</span> <span data-status></span></p>
             </div>
           </div>
@@ -42,57 +37,39 @@
     </section>
 
     <section class="surface-ivory py-16 md:py-24">
-      <div class="max-w-site mx-auto px-5 md:px-8 space-y-16 md:space-y-20">
-        <div data-notice class="hidden panel px-5 py-4 text-sm text-ink-soft border-l-[3px] !border-l-gold"></div>
+      <div class="max-w-site mx-auto px-5 md:px-8">
+        <article class="mw panel-float" aria-label="Gold live price">
+          <header class="mw-head">
+            <div><h2 class="mw-name">Gold</h2><p class="mw-sub">XAU/USD, per troy ounce</p></div>
+            <p class="mw-time num" data-time>Waiting for prices</p>
+          </header>
 
-        <div data-reveal>
-          <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
-            <div>
-              <p class="label">International</p>
-              <h2 class="sec-title mt-4 !text-[clamp(1.6rem,2.6vw,2.1rem)]">Spot prices in USD</h2>
+          <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+            <div class="grid gap-6 content-start">
+              <div><span class="mw-k">Market price</span><p class="mw-price num" data-k="last">—</p></div>
+              <div class="mw-sides">
+                <div class="mw-side"><span class="mw-k">Market bid</span><p class="mw-quote num" data-k="bid">—</p></div>
+                <div class="mw-spread"><span class="mw-k">Spread</span><p class="num" data-k="spread">—</p></div>
+                <div class="mw-side"><span class="mw-k">Market ask</span><p class="mw-quote num" data-k="ask">—</p></div>
+              </div>
+              <div class="mw-range">
+                <div class="mw-range-row"><span><span class="mw-k">Day low</span><span class="num" data-k="low">—</span></span><span class="text-right"><span class="mw-k">Day high</span><span class="num" data-k="high">—</span></span></div>
+                <div class="mw-bar" aria-hidden="true"><span data-fill></span></div>
+              </div>
             </div>
-            <p class="text-sm text-ink-soft">Per troy ounce</p>
-          </div>
-          <div class="panel overflow-x-auto">
-            <table class="ledger">
-              <caption class="sr-only">Precious metal bid, ask, low and high prices in US dollars per troy ounce</caption>
-              <thead><tr><th scope="col">Symbol</th><th scope="col">Bid</th><th scope="col">Ask</th><th scope="col" class="hidden sm:table-cell">Low</th><th scope="col" class="hidden sm:table-cell">High</th><th scope="col" class="hidden md:table-cell">Time</th></tr></thead>
-              <tbody data-usd></tbody>
-            </table>
-          </div>
-        </div>
 
-        <div data-reveal>
-          <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
-            <div>
-              <p class="label">Local market</p>
-              <h2 class="sec-title mt-4 !text-[clamp(1.6rem,2.6vw,2.1rem)]">Gold prices in <span data-cur-name>USD</span></h2>
+            <div class="mw-ours">
+              <h3 class="mw-ours-title">Our prices</h3>
+              <div data-ours class="grid sm:grid-cols-2 gap-4">
+                <div class="mw-offer"><span class="mw-k">We buy at</span><p class="mw-quote num" data-k="buy">—</p><p class="mw-note">When you sell gold to us</p></div>
+                <div class="mw-offer"><span class="mw-k">We sell at</span><p class="mw-quote num" data-k="sell">—</p><p class="mw-note">When you buy gold from us</p></div>
+              </div>
+              <p data-paused class="hidden text-ink-soft leading-relaxed"></p>
+              <a class="btn btn-wa mt-6" data-wa="Hello Alizeh Bullion, could you confirm today's gold price?" href="#"><span data-wa-icon></span>Confirm a price on WhatsApp</a>
             </div>
-            <span data-currency-switch-slot2></span>
           </div>
-          <div class="panel overflow-x-auto">
-            <table class="ledger">
-              <caption class="sr-only">Gold bid, ask, low and high prices by purity and weight in the selected currency</caption>
-              <thead><tr><th scope="col">Product</th><th scope="col">Bid</th><th scope="col">Ask</th><th scope="col" class="hidden sm:table-cell">Low</th><th scope="col" class="hidden sm:table-cell">High</th></tr></thead>
-              <tbody data-local></tbody>
-            </table>
-          </div>
-          <p class="text-xs text-ink-faint mt-4">Bid is the price we buy at; ask is the price we sell at. 1 tola = 11.664 g. 1 troy ounce = 31.103 g. Jewellery prices include making charges and are quoted separately.</p>
-        </div>
-
-        <div data-reveal>
-          <div class="mb-6">
-            <p class="label">Other metals</p>
-            <h2 class="sec-title mt-4 !text-[clamp(1.6rem,2.6vw,2.1rem)]">Silver, platinum and palladium</h2>
-          </div>
-          <div class="panel overflow-x-auto">
-            <table class="ledger">
-              <caption class="sr-only">Silver, platinum and palladium prices in the selected currency</caption>
-              <thead><tr><th scope="col">Metal</th><th scope="col">Bid / gram</th><th scope="col">Ask / gram</th><th scope="col" class="hidden sm:table-cell">Bid / kilo</th><th scope="col" class="hidden sm:table-cell">Ask / kilo</th></tr></thead>
-              <tbody data-others></tbody>
-            </table>
-          </div>
-        </div>
+        </article>
+        <p class="text-xs text-ink-faint mt-5">Prices are indicative and move with the market. A price is confirmed when our trading desk accepts your order. 1 troy ounce = 31.1035 g.</p>
       </div>
     </section>
 
@@ -115,62 +92,79 @@
   <script src="assets/site.js"></script>
   <script>
     (() => {
-      const { METAL_NAMES, quote, fmt, switcher, wire, timeAgo } = AB;
-      document.querySelector('[data-currency-switch-slot]').outerHTML = switcher('Rates currency');
-      document.querySelector('[data-currency-switch-slot2]').outerHTML = switcher('Local table currency');
-      wire();
+      AB.wire();
+      const $ = (s) => document.querySelector(s);
+      const k = (name) => $(`[data-k="${name}"]`);
 
-      const flash = (el) => { el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick'); };
-      const NAMES = { USD: 'USD', AED: 'AED', PKR: 'PKR' };
-      const LOCAL = [
-        ['Gold 9999', '1 gram', 'g', 0.9999], ['Gold 9995', '1 gram', 'g', 0.9995], ['Gold 22K', '1 gram', 'g', '22K'],
-        ['Gold 21K', '1 gram', 'g', '21K'], ['Gold 18K', '1 gram', 'g', '18K'], ['1 Tola', '9999 fine', 'tola', 0.9999],
-        ['10 Tola', '9999 fine', '10tola', 0.9999], ['1 Kilo bar', '9999 fine', 'kg', 0.9999],
-      ];
-
-      function render() {
-        const r = AB.rates; if (!r) return;
-        const time = new Date(r.updated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        const usdOz = (m, side) => { const q = r.quotes?.[m]?.[side]; return q == null ? '—' : fmt(q, 'USD'); };
-        const tUsd = document.querySelector('[data-usd]');
-        tUsd.innerHTML = ['XAU', 'XAG', 'XPT', 'XPD'].map((m) => `
-          <tr><th scope="row"><span class="inline-flex items-center gap-3"><span class="w-8 h-8 rounded-md surface-brushed grid place-items-center text-[0.62rem] font-bold text-[#4a3818]">${m.slice(1)}</span><span>${m}-USD<span class="block text-xs font-normal text-ink-faint">${METAL_NAMES[m]}</span></span></span></th>
-            <td class="bid">${usdOz(m, 'bid')}</td><td class="ask">${usdOz(m, 'ask')}</td>
-            <td class="hidden sm:table-cell text-ink-soft">${usdOz(m, 'low')}</td><td class="hidden sm:table-cell text-ink-soft">${usdOz(m, 'high')}</td>
-            <td class="hidden md:table-cell text-ink-faint text-sm">${time}</td></tr>`).join('');
-
-        document.querySelector('[data-cur-name]').textContent = NAMES[AB.currency];
-        const tLocal = document.querySelector('[data-local]');
-        tLocal.innerHTML = LOCAL.map(([name, sub, unit, p]) => `
-          <tr><th scope="row">${name}<span class="block text-xs font-normal text-ink-faint">${sub}</span></th>
-            <td class="bid">${fmt(quote('XAU', 'bid', unit, p))}</td><td class="ask">${fmt(quote('XAU', 'ask', unit, p))}</td>
-            <td class="hidden sm:table-cell text-ink-soft">${fmt(quote('XAU', 'low', unit, p))}</td><td class="hidden sm:table-cell text-ink-soft">${fmt(quote('XAU', 'high', unit, p))}</td></tr>`).join('');
-
-        const tO = document.querySelector('[data-others]');
-        tO.innerHTML = ['XAG', 'XPT', 'XPD'].map((m) => `
-          <tr><th scope="row">${METAL_NAMES[m]}</th><td class="bid">${fmt(quote(m, 'bid', 'g'))}</td><td class="ask">${fmt(quote(m, 'ask', 'g'))}</td>
-            <td class="hidden sm:table-cell text-ink-soft">${fmt(quote(m, 'bid', 'kg'))}</td><td class="hidden sm:table-cell text-ink-soft">${fmt(quote(m, 'ask', 'kg'))}</td></tr>`).join('');
-        [tUsd, tLocal, tO].forEach(flash);
-
-        const live = !r.demo && !r.stale;
-        document.querySelector('[data-dot]').className = `absolute inset-0 rounded-full ${live ? 'bg-[#2E9B5E]' : 'bg-gold'}`;
-        document.querySelector('[data-ping]').className = `absolute inset-0 rounded-full animate-ping opacity-60 ${live ? 'bg-[#2E9B5E]' : 'bg-gold'}`;
-        document.querySelector('[data-live]').textContent = r.demo ? 'Sample prices' : r.stale ? 'Delayed' : 'Live';
-        document.querySelector('[data-status]').textContent = `· Updated ${timeAgo(r.updated)} · Refreshes every ${r.refreshSeconds >= 120 ? Math.round(r.refreshSeconds / 60) + ' min' : r.refreshSeconds + ' s'}`;
-
-        const msgs = [];
-        if (r.demo) msgs.push('Sample prices are displayed while the live market feed is being connected. Please contact us for today\'s actual rates.');
-        if (!r.delayed && r.delayedMetals?.length) msgs.push(`${r.delayedMetals.map((m) => METAL_NAMES[m]).join(', ').replace(/, ([^,]*)$/, ' and $1')} prices are from the previous market close; gold is live.`);
-        if (r.delayed) msgs.push('Prices shown are from the previous market close. Please contact us for a live quote.');
-        else if (r.stale) msgs.push('The market feed is temporarily unreachable; the last received prices are shown.');
-        if (!r.fx[AB.currency]) msgs.push(`A ${AB.currency} exchange rate is currently unavailable. Please select USD or AED.`);
-        const notice = document.querySelector('[data-notice]');
-        notice.classList.toggle('hidden', !msgs.length); notice.textContent = msgs.join(' ');
+      function setStatus(state, word, detail) {
+        const c = state === 'ok' ? 'bg-[#2E7D52]' : 'bg-gold';
+        $('[data-dot]').className = `absolute inset-0 rounded-full ${c}`;
+        $('[data-ping]').className = `absolute inset-0 rounded-full opacity-60 ${c} ${state === 'ok' ? 'animate-ping' : ''}`;
+        $('[data-live]').textContent = word;
+        $('[data-status]').textContent = detail;
       }
-      document.addEventListener('ab:rates', render);
-      document.addEventListener('ab:currency', render);
-      document.addEventListener('ab:rates-error', () => { document.querySelector('[data-live]').textContent = 'Unavailable'; document.querySelector('[data-status]').textContent = '· Please call us for today\'s price.'; });
-      render();
+
+      // USD, 2 decimals, no rounding beyond cents. Larger last two digits: the dealing-board convention.
+      const usd = (v, split) => {
+        if (v == null || !isFinite(v)) return '—';
+        const s = v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return split ? `<span class="mw-cur">$</span>${s.slice(0, -2)}<span class="mw-pips">${s.slice(-2)}</span>` : '$' + s;
+      };
+      const prev = {};
+      const flash = (el, dir) => { el.classList.remove('up', 'down'); void el.offsetWidth; el.classList.add(dir); };
+      const set = (name, v, split = true, animate = true) => {
+        const el = k(name);
+        el.innerHTML = usd(v, split);
+        if (animate && v != null && prev[name] != null && v !== prev[name]) flash(el, v > prev[name] ? 'up' : 'down');
+        prev[name] = v;
+      };
+
+      let data = null, queued = false, live = false;
+      function paint() {
+        queued = false;
+        if (!data) return;
+        const g = data.gold || {};
+        const mid = g.bid && g.ask ? (g.bid + g.ask) / 2 : null;
+        const last = g.last ?? mid;
+        set('last', last); set('bid', g.bid); set('ask', g.ask);
+        set('spread', g.bid && g.ask ? g.ask - g.bid : null, false, false);
+        set('low', g.low, false, false); set('high', g.high, false, false);
+        const pct = g.high && g.low && g.high > g.low && last ? Math.min(1, Math.max(0, (last - g.low) / (g.high - g.low))) : 0;
+        $('[data-fill]').style.transform = `scaleX(${pct})`;
+        if (g.time) $('[data-time]').textContent = new Date(g.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+        const o = data.ours;
+        const paused = !o || o.paused;
+        $('[data-ours]').classList.toggle('hidden', paused);
+        $('[data-paused]').classList.toggle('hidden', !paused);
+        if (paused) $('[data-paused]').textContent = o?.message || 'Please contact our trading desk for today\'s price.';
+        else { set('buy', o.buy); set('sell', o.sell); }
+      }
+      const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
+
+      // Live stream from our server. Without it, fall back to the regular gold rate (no buy/sell prices).
+      function connect() {
+        if (!window.EventSource) return fallback();
+        const es = new EventSource('/api/stream');
+        es.onmessage = (e) => {
+          data = JSON.parse(e.data); live = true;
+          if (data.status === 'live') setStatus('ok', 'Live', '· Streaming from the market');
+          else if (data.status === 'reconnecting') setStatus('warn', 'Reconnecting', '· Showing the last received prices');
+          else setStatus('warn', 'Connecting', '· Opening the market feed');
+          schedule();
+        };
+        es.onerror = () => { if (es.readyState === 2) { live = false; fallback(); } };
+      }
+      function fallback() {
+        if (live || !AB.rates) return;
+        const r = AB.rates, q = r.quotes?.XAU || {};
+        data = { gold: { bid: q.bid, ask: q.ask, last: r.usdPerOz?.XAU, low: q.low, high: q.high, time: Date.parse(r.updated) }, ours: { paused: true, message: 'Live prices are unavailable right now. Please contact our trading desk for today\'s price.' } };
+        setStatus('warn', r.demo ? 'Sample prices' : 'Delayed', `· Updated ${AB.timeAgo(r.updated)}`);
+        schedule();
+      }
+      document.addEventListener('ab:rates', fallback);
+      document.addEventListener('ab:rates-error', () => { if (!live) setStatus('warn', 'Unavailable', '· Please call us for today\'s price.'); });
+      connect();
     })();
   </script>
 </body>

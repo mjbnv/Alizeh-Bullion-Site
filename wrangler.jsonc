@@ -15,7 +15,12 @@
 
   // Keep the API keys and settings entered in the dashboard (Settings → Variables and Secrets)
   // instead of wiping them on each deploy.
-  "keep_vars": true
+  "keep_vars": true,
+
+  // RateHub: holds the live AllTick connection, the pricing settings and the admin sign-in.
+  // Secrets it needs (Settings → Variables and Secrets): ALLTICK_API_KEY, ADMIN_EMAILS, ADMIN_PASSWORD.
+  "durable_objects": { "bindings": [{ "name": "RATE_HUB", "class_name": "RateHub" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["RateHub"] }]
 
   // Optional credit-saving store for live rates. After creating a KV namespace in the dashboard,
   // add its id here (the id is not secret):

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Gold pricing | Alizeh Bullion admin</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath fill='%23C6A15B' d='M4 88 44 2h14l16 38-14 12-9-22-30 58zM64 58l14-12 18 42H80z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/tw.js"></script>
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .field { width: 100%; background: #FCFAF5; border: 1px solid var(--line-strong); border-radius: var(--r-sm); padding: .7rem .85rem; font: inherit; color: var(--ink); }
+    .field:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 1px; }
+    .seg2 { display: inline-flex; border: 1px solid var(--line-strong); border-radius: var(--r-sm); overflow: hidden; }
+    .seg2 button { padding: .65rem .9rem; font-size: .85rem; font-weight: 600; color: var(--ink-soft); background: #FCFAF5; transition: background-color .2s var(--ease); }
+    .seg2 button[aria-pressed="true"] { background: var(--champagne-gold); color: var(--ink); }
+    .seg2 button:hover { background: var(--ivory-deep); }
+    .seg2 button:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: -2px; }
+    .seg2 button:active { transform: scale(.97); }
+    .admin-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: var(--r-sm); padding: .8rem 1.3rem; font-weight: 600; font-size: .9rem; background: var(--gold-deep); color: #FCFAF5; transition: transform .3s var(--spring), opacity .2s var(--ease); }
+    .admin-btn:hover { opacity: .92; }
+    .admin-btn:active { transform: scale(.97); }
+    .admin-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .admin-btn[disabled] { opacity: .45; cursor: not-allowed; }
+    .link-btn { font-size: .85rem; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; }
+    .link-btn:hover { color: var(--ink); }
+    .link-btn:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
+  </style>
+</head>
+<body class="antialiased surface-ivory min-h-screen">
+  <main class="max-w-4xl mx-auto px-5 md:px-8 py-10 md:py-14">
+    <header class="flex items-center justify-between gap-4 mb-10">
+      <a href="index.html" class="flex items-center gap-3 focus-visible:outline-2"><span data-mark class="block w-9 h-8"></span><span class="font-semibold text-ink">Gold pricing</span></a>
+      <div data-who class="hidden items-center gap-4 text-sm text-ink-soft"><span data-email></span><button type="button" class="link-btn" data-logout>Sign out</button></div>
+    </header>
+
+    <!-- Sign in -->
+    <section data-login class="hidden panel-float p-6 md:p-8 max-w-md mx-auto">
+      <h1 class="text-xl font-semibold text-ink">Sign in</h1>
+      <p class="text-sm text-ink-soft mt-2">Only approved email addresses can change prices.</p>
+      <form class="mt-6 grid gap-4" data-login-form>
+        <label class="grid gap-1.5 text-sm font-medium text-ink">Email<input class="field" type="email" name="email" autocomplete="username" required></label>
+        <label class="grid gap-1.5 text-sm font-medium text-ink">Password<input class="field" type="password" name="password" autocomplete="current-password" required></label>
+        <p data-login-error class="hidden text-sm text-[#A23B37]" role="alert"></p>
+        <button class="admin-btn" type="submit">Sign in</button>
+      </form>
+    </section>
+
+    <!-- Editor -->
+    <section data-editor class="hidden grid gap-6">
+      <div class="panel p-5 md:p-6 grid sm:grid-cols-3 gap-4 items-center">
+        <div><span class="mw-k">Market bid</span><p class="text-2xl font-semibold num text-ink" data-m="bid">—</p></div>
+        <div><span class="mw-k">Market ask</span><p class="text-2xl font-semibold num text-ink" data-m="ask">—</p></div>
+        <p class="text-sm text-ink-soft sm:text-right"><span data-feed>Connecting to the live feed</span><br><span class="text-ink-faint">Gold, USD per troy ounce</span></p>
+      </div>
+
+      <form data-rules class="grid gap-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <fieldset class="panel-float p-5 md:p-6 grid gap-4">
+            <legend class="sr-only">Buy price</legend>
+            <div><h2 class="font-semibold text-ink">We buy at</h2><p class="text-sm text-ink-soft mt-1">Market bid minus your discount.</p></div>
+            <div class="flex gap-3"><input class="field num" type="number" step="any" name="buyValue" aria-label="Buy discount amount" required><div class="seg2 shrink-0" role="group" aria-label="Buy discount type" data-type="buy"><button type="button" data-v="pct">%</button><button type="button" data-v="usd">USD</button></div></div>
+            <p class="text-sm text-ink-soft">Customers will see <span class="font-semibold text-ink num" data-preview="buy">—</span></p>
+          </fieldset>
+          <fieldset class="panel-float p-5 md:p-6 grid gap-4">
+            <legend class="sr-only">Sell price</legend>
+            <div><h2 class="font-semibold text-ink">We sell at</h2><p class="text-sm text-ink-soft mt-1">Market ask plus your premium.</p></div>
+            <div class="flex gap-3"><input class="field num" type="number" step="any" name="sellValue" aria-label="Sell premium amount" required><div class="seg2 shrink-0" role="group" aria-label="Sell premium type" data-type="sell"><button type="button" data-v="pct">%</button><button type="button" data-v="usd">USD</button></div></div>
+            <p class="text-sm text-ink-soft">Customers will see <span class="font-semibold text-ink num" data-preview="sell">—</span></p>
+          </fieldset>
+        </div>
+
+        <div class="panel p-5 md:p-6 grid gap-4">
+          <label class="flex items-center gap-3 font-medium text-ink"><input type="checkbox" name="paused" class="w-4 h-4 accent-[#A9843F]"> Pause our prices on the website</label>
+          <label class="grid gap-1.5 text-sm text-ink-soft">Message shown while paused<input class="field" type="text" name="message" maxlength="200"></label>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <button class="admin-btn" type="submit" data-save disabled>Save and publish</button>
+          <p data-save-status class="text-sm text-ink-soft" role="status"></p>
+        </div>
+      </form>
+
+      <div class="panel p-5 md:p-6">
+        <h2 class="font-semibold text-ink mb-3">Recent changes</h2>
+        <ul data-log class="grid gap-2 text-sm text-ink-soft"></ul>
+      </div>
+      <p class="text-xs text-ink-faint">A positive number moves the price in our favour; a negative number reverses it. Prices are not rounded.</p>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const $ = (s) => document.querySelector(s);
+      const markSvg = `<svg viewBox="0 0 100 90" class="w-full h-full" aria-hidden="true"><path fill="#C6A15B" d="M4 88 44 2h14l16 38-14 12-9-22-30 58zM64 58l14-12 18 42H80z"/></svg>`;
+      document.querySelectorAll('[data-mark]').forEach((el) => (el.innerHTML = markSvg));
+      const usd = (v) => (v == null || !isFinite(v) ? '—' : '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+      const api = async (path, body) => {
+        const r = await fetch(path, body === undefined ? { cache: 'no-store' } : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw Object.assign(new Error(j.error || `Error ${r.status}`), { status: r.status });
+        return j;
+      };
+
+      const form = $('[data-rules]');
+      const types = { buy: 'pct', sell: 'pct' };
+      let saved = null, market = {};
+
+      function show(view) {
+        $('[data-login]').classList.toggle('hidden', view !== 'login');
+        $('[data-editor]').classList.toggle('hidden', view !== 'editor');
+        $('[data-who]').classList.toggle('hidden', view !== 'editor');
+        $('[data-who]').classList.toggle('flex', view === 'editor');
+      }
+      const setType = (side, t) => {
+        types[side] = t;
+        document.querySelectorAll(`[data-type="${side}"] button`).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === t)));
+      };
+      const draft = () => ({
+        buy: { type: types.buy, value: Number(form.buyValue.value) },
+        sell: { type: types.sell, value: Number(form.sellValue.value) },
+        paused: form.paused.checked, message: form.message.value,
+      });
+      const adjust = (p, s) => (s.type === 'pct' ? p * (s.value / 100) : s.value);
+      function preview() {
+        const d = draft();
+        $('[data-preview="buy"]').textContent = market.bid && isFinite(d.buy.value) ? usd(market.bid - adjust(market.bid, d.buy)) : '—';
+        $('[data-preview="sell"]').textContent = market.ask && isFinite(d.sell.value) ? usd(market.ask + adjust(market.ask, d.sell)) : '—';
+        const dirty = saved && JSON.stringify(d) !== JSON.stringify({ buy: saved.buy, sell: saved.sell, paused: saved.paused, message: saved.message });
+        $('[data-save]').disabled = !dirty;
+        if (dirty) $('[data-save-status]').textContent = 'Unsaved changes';
+      }
+      function load({ email, rules, log }) {
+        if (email) $('[data-email]').textContent = email;
+        saved = rules;
+        form.buyValue.value = rules.buy.value; form.sellValue.value = rules.sell.value;
+        setType('buy', rules.buy.type); setType('sell', rules.sell.type);
+        form.paused.checked = rules.paused; form.message.value = rules.message || '';
+        const fmtSide = (s) => (s.type === 'pct' ? `${s.value}%` : usd(s.value));
+        $('[data-log]').innerHTML = log.length
+          ? log.map((l) => `<li class="flex flex-wrap justify-between gap-2 border-b border-[var(--line)] pb-2"><span>${new Date(l.at).toLocaleString()} by ${l.by.replace(/</g, '&lt;')}</span><span class="num">Buy −${fmtSide(l.buy)}, sell +${fmtSide(l.sell)}${l.paused ? ', paused' : ''}</span></li>`).join('')
+          : '<li>No changes yet.</li>';
+        preview();
+      }
+
+      document.querySelectorAll('[data-type] button').forEach((b) => b.addEventListener('click', () => { setType(b.parentElement.dataset.type, b.dataset.v); preview(); }));
+      form.addEventListener('input', preview);
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        $('[data-save]').disabled = true;
+        $('[data-save-status]').textContent = 'Saving…';
+        try {
+          load(await api('/api/admin/pricing', draft()));
+          $('[data-save-status]').textContent = 'Saved. The website shows the new prices now.';
+        } catch (err) {
+          if (err.status === 401) return show('login');
+          $('[data-save-status]').textContent = err.message;
+          $('[data-save]').disabled = false;
+        }
+      });
+
+      $('[data-login-form]').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = e.target, errEl = $('[data-login-error]');
+        errEl.classList.add('hidden');
+        try {
+          await api('/api/admin/login', { email: f.email.value, password: f.password.value });
+          f.password.value = '';
+          start();
+        } catch (err) { errEl.textContent = err.message; errEl.classList.remove('hidden'); }
+      });
+      $('[data-logout]').addEventListener('click', async () => { await api('/api/admin/logout', {}).catch(() => {}); show('login'); });
+
+      async function start() {
+        try { load(await api('/api/admin/pricing')); show('editor'); }
+        catch { show('login'); }
+      }
+
+      // Live market prices for the preview
+      const es = window.EventSource ? new EventSource('/api/stream') : null;
+      if (es) {
+        es.onmessage = (e) => {
+          const d = JSON.parse(e.data); market = d.gold || {};
+          $('[data-m="bid"]').textContent = usd(market.bid); $('[data-m="ask"]').textContent = usd(market.ask);
+          $('[data-feed]').textContent = d.status === 'live' ? 'Live feed connected' : d.status === 'reconnecting' ? 'Reconnecting to the live feed' : 'Connecting to the live feed';
+          preview();
+        };
+        es.onerror = () => { if (es.readyState === 2) $('[data-feed]').textContent = 'Live feed unavailable: previews are disabled'; };
+      }
+      start();
+    })();
+  </script>
+</body>
+</html>

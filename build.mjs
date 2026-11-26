@@ -1,6 +1,6 @@
-// Builds the public website into dist/ for Cloudflare Pages.
+// Builds the public website into dist/ for Cloudflare.
 // Only the pages and the assets folder are published: tools, notes, settings and .env stay private.
-// The live-rate API lives in functions/ (Cloudflare picks that up separately).
+// The API (live rates, admin) runs in worker/ and functions/.
 // Usage: npm run build
 import { cp, rm, mkdir, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
